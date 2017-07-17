@@ -10,7 +10,7 @@
 
 <% @recipes.sort_by{|recipe| recipe.created_at}.reverse!.each do |recipe| %>
     <tr>
-        <td><%= recipe.name %></td>
+        <td><%= link_to recipe.name, recipe_url(recipe.id) %></td>
         <td><%= recipe.description %></td>
     </tr>
     

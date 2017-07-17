@@ -15,6 +15,12 @@
   </form>
 <% end %>
 
+<% if current_user %>
+  <% if !current_page?(:controller => :"recipes", :action => :"index") %>
+    <%= link_to "Recipes Home Page" , recipes_url %>
+    <% end %>
+<% end %>
+
 <%= yield %>
 
 </body>

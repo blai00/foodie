@@ -1,0 +1,18 @@
+<h4>Check Out Your Page. <%= link_to "User Profile", user_url(current_user.id)%> </h4>
+<h1>Welcome! Lets share some food ideas!</h1>
+
+<h3>List of Recipes</h3>
+<table>
+    <tr>
+        <th>Name of Dish</th>
+        <th>Description</th>
+    </tr>
+
+<% @recipes.sort_by{|recipe| recipe.created_at}.reverse!.each do |recipe| %>
+    <tr>
+        <td><%= recipe.name %></td>
+        <td><%= recipe.description %></td>
+    </tr>
+    
+<% end %>
+</table>

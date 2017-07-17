@@ -1,0 +1,28 @@
+<h1>Welcome</h1>
+
+<h2>Register</h2>
+<% if flash[:message] %>
+    <p><%= flash[:message] %></p>
+<% end %>
+
+<form action= '/users' method ='post'>
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    First Name: <%= text_field(:user, :first_name) %>
+    Last Name: <%= text_field(:user, :last_name) %>
+    Email: <%= email_field(:user, :email) %>
+    Password: <%= password_field(:user, :password) %>
+    Password: Confirmation <%= password_field(:user, :password_confirmation) %>
+    <button type = 'submit'>Register</button>
+</form>
+
+<h2>Login</h2>
+<% if flash[:error] %>
+    <p><%= flash[:error] %></p>
+<% end %>
+
+<form action = '/sessions' method = 'post'>
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    Email: <input type='email' name='email'>
+    Password: <input type='password' name ='password'>
+    <input type = 'submit' value='Login'>
+</form>

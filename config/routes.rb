@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
   root 'sessions#new'
+  
+  post 'comments' => 'comments#create'
+  
+  delete '/recipes/comments/:id' => 'comments#delete'
   resources :users
   resources :sessions
   

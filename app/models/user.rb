@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
 has_many :recipes, dependent: :destroy
 
+has_many :comments, dependent: :destroy
+has_many :recipe_comments, through: :comments, source: :recipe
+
 
 
 has_secure_password

@@ -6,3 +6,23 @@
 <h3>Restaurants that Specialize</h3>
 
 <h4>Comments</h4>
+<% @recipe.comments.each do |comment| %>
+    <p><%= comment.user.first_name %> says: <%= comment.content %></p>
+    <% if current_user.id == comment.user_id  %>
+    <form action= 'comments/<%=comment.id %>' method ='post'>
+        <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+        <input type='hidden' name='_method' value='delete'>
+        <input type='submit' value='Delete Comment'>
+    <% end %>
+<br />
+    
+<% end %>
+
+<form action= '/comments' method='post'>
+    <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+    Add a Comment:<input type='text' name='content'>
+    <input type='hidden' name='recipe_id' value=<%=@recipe.id %>>
+    <br />
+    <input type='submit' value='Add Comment'>
+</form>
+

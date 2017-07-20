@@ -17,4 +17,19 @@
     <h2><%= link_to recipe.name, recipe_url(recipe.id) %></h2>
     <h4><%= recipe.description %></h4>
     <p><%= recipe.instructions %></p>
+    <p><%= recipe.user_likes.count %> people like this recipe</p>
+    
+    <% if recipe.user_likes.include?(current_user) %>
+        <form action= 'likes/<%=find_id(recipe.likes, current_user.id) %>' method ='post'>
+            <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+            <input type='hidden' name='_method' value='delete'>
+            <input type='submit' value='Unlike'>
+    <% else %>
+    
+        <form action='/likes' method='post'>
+            <input type ='hidden' name='authenticity_token' value= '<%= form_authenticity_token %>'>
+            <input type='hidden' name='recipe_id' value=<%= recipe.id %>>
+            <input type='submit' value='Like'>
+        </form>
+    <% end %>
 <% end %>

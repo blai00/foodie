@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   root 'sessions#new'
   
   post 'comments' => 'comments#create'
+  post '/likes' => 'likes#create'
   
-  delete '/recipes/comments/:id' => 'comments#delete'
+  delete 'recipes/comments/:id' => 'comments#delete'
+  delete '/users/likes/:id' => 'likes#delete'
   resources :users
   resources :sessions
   

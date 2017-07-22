@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Workspace</title>
+  <title>Foodie</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  
 <% if current_user %>
-  <form action= '/sessions/<%=current_user.id %>' method ='post'>
-    <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
-    <input type='hidden' name='_method' value='delete'>
-    <input type='submit' value='Log Out'>
-  </form>
-<% end %>
-
-<% if current_user %>
-  <% if !current_page?(:controller => :"recipes", :action => :"index") %>
-    <%= link_to "Recipes Home Page" , recipes_url %>
-    <% end %>
+  <nav class="navbar navbar-default"  role="navigation">
+    
+    <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to "Home", recipes_url %></li>
+      <li><%= link_to "Profile", user_url(current_user.id) %></li>
+      <li><%= link_to "Sigh Out", destroy_sessions_url(current_user.id), method: :delete %></li>
+    </ul>
+  </nav>
 <% end %>
 
 <%= yield %>

@@ -1,5 +1,7 @@
 <h1><%= @recipe.name %></h1>
-<p><%= @recipe.instructions %></p>
+<p><%= image_tag(@recipe.image) %></p>
+
+<h3>Video Instructions</h3>
 
 <h3>Images of the Dish</h3>
 
@@ -18,11 +20,12 @@
     
 <% end %>
 
+<div class='panel-body'>
 <form action= '/comments' method='post'>
     <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
-    Add a Comment:<input type='text' name='content'>
+    Add a Comment:<input type='text' name='content' class='form-control'>
     <input type='hidden' name='recipe_id' value=<%=@recipe.id %>>
     <br />
     <input type='submit' value='Add Comment'>
 </form>
-
+</div>

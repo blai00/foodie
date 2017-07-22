@@ -3,20 +3,12 @@
     <p><%= flash[:message] %></p>
 <% end %>
 <% if current_user.id == @user.id %>
-    <h2>Add a Recipe?</h2>
-        <form action='/recipes' method='post'>
-            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-            Name: <%= text_field(:recipe, :name) %>
-            Description: <%= text_field(:recipe, :description) %>
-            Instructions: <%= text_area(:recipe, :instructions) %>
-            <input type='hidden' name='recipe[user_id]' value= <%= current_user.id %>> 
-            <input type='submit' value='Submit Recipe' >
-        </form>
+    <h2><%= link_to "Add Recipe", new_recipe_url %></h2>
 <% end %>
+        
 <% @user.recipes.each do |recipe| %>
-    <h2><%= link_to recipe.name, recipe_url(recipe.id) %></h2>
-    <h4><%= recipe.description %></h4>
-    <p><%= recipe.instructions %></p>
+    <%= link_to image_tag(recipe.image.url(:medium)), recipe_url %>
+    <
     <p><%= recipe.user_likes.count %> people like this recipe</p>
     
     <% if recipe.user_likes.include?(current_user) %>

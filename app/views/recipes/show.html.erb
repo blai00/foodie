@@ -1,11 +1,38 @@
-<h1><%= @recipe.name %></h1>
-<p><%= image_tag(@recipe.image) %></p>
-
-<h3>Video Instructions</h3>
-
-<h3>Images of the Dish</h3>
-
-<h3>Restaurants that Specialize</h3>
+<div class ='main-content'>
+    <div id= 'recipe_top.row'>
+        <div class= 'col-md-4'>
+            <%= image_tag @recipe.image.url(:medium), {class: "recipe_image"} %>
+        </div>
+        <div id = 'recipe_info'>
+            <div class= 'col-md-8'>
+                <h2><%= @recipe.name %></h2>
+                <h3><%= @recipe.description %></h3>
+            </div>
+        </div>
+    </div>
+    <div class = 'row'>
+        <div class = 'col-md-6'>
+            <div id="ingredients">
+                <h2>Ingredients</h2>
+                <ul>
+                    <%= @recipe.ingredients.each do |ingredient| %>
+                        <li><%= ingredient.name %></li>
+                    <% end %>
+            </ul>
+            </div>
+        </div>
+        
+        <div class ='col-md-6'>
+            <div id='directions'>
+                <h2>Directions</h2>
+                <ul>
+                    <%= @recipe.directions.each do |direction| %>
+                        <li><%= direction.steps %></li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+    </div>
 
 <h4>Comments</h4>
 <% @recipe.comments.each do |comment| %>

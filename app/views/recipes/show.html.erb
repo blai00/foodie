@@ -15,10 +15,10 @@
             <div id="ingredients">
                 <h2>Ingredients</h2>
                 <ul>
-                    <%= @recipe.ingredients.each do |ingredient| %>
+                    <% @recipe.ingredients.each do |ingredient| %>
                         <li><%= ingredient.name %></li>
                     <% end %>
-            </ul>
+                </ul>
             </div>
         </div>
         
@@ -26,14 +26,14 @@
             <div id='directions'>
                 <h2>Directions</h2>
                 <ul>
-                    <%= @recipe.directions.each do |direction| %>
+                    <% @recipe.directions.each do |direction| %>
                         <li><%= direction.steps %></li>
                     <% end %>
                 </ul>
             </div>
         </div>
     </div>
-
+</div>
 <h4>Comments</h4>
 <% @recipe.comments.each do |comment| %>
     <p><%= comment.user.first_name %> says: <%= comment.content %></p>

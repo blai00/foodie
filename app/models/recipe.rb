@@ -1,6 +1,8 @@
 class Recipe < ActiveRecord::Base
   belongs_to :user
   
+  has_many :restaurants 
+  
   has_many :comments, dependent: :destroy
   has_many :user_comments, through: :comments, source: :user
   
@@ -9,6 +11,12 @@ class Recipe < ActiveRecord::Base
   
   has_many :ingredients
   has_many :directions
+  
+   accepts_nested_attributes_for :restaurants,
+                                reject_if: proc {|attributes| attributes['name'].blank?},
+                                reject_if: proc {|attributes| attributes['city'].blank?},
+                                reject_if: proc {|attributes| attributes['state'].blank?},
+                                allow_destroy: true
   
   accepts_nested_attributes_for :ingredients,
                                 reject_if: proc {|attributes| attributes['name'].blank?},

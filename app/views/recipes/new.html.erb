@@ -25,8 +25,19 @@
                 <%= link_to_add_association 'Add Direction', f,:directions, class: "btn btn-default add-button" %>
             </div>
         </div>
-    <%= f.button :submit, class: "btn btn-primary"%>
     </div>
+    <div class='row'>
+        <div class = 'col-md 6'>
+            <%= f.simple_fields_for :restaurants do |restaurant| %>
+                <%= render 'restaurants_fields', f:restaurant %>
+            <% end %>
+            <div class ='links'>
+                <%= link_to_add_association 'Add Restaurant',f, :restaurants, class: "btn btn-default add-button" %>
+            </div>
+        </div>
+    </div>
+    <%= f.button :submit, class: "btn btn-primary"%>
+    
 </div>
 
 

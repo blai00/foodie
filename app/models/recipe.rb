@@ -3,7 +3,7 @@ class Recipe < ActiveRecord::Base
   
   has_many :restaurants 
   
-  has_many :comments, dependent: :destroy
+  has_many :comments
   has_many :user_comments, through: :comments, source: :user
   
   has_many :likes, dependent: :destroy

@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :delete]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  
   
   def index
     @recipe = Recipe.all
@@ -26,12 +27,15 @@ class RecipesController < ApplicationController
   end
 
   def destroy
+    @recipe.destroy
+    redirect_to recipes_url
   end
   
   private
   def recipe_params
     params.require(:recipe).permit(:name, :description, :user_id, :image, ingredients_attributes: [:id, :name, :_destroy], directions_attributes: [:id, :steps, :_destroy], restaurants_attributes: [:id, :name, :city, :state, :destroy])
   end
+  
   def set_recipe
     @recipe = Recipe.find(params[:id])
   end

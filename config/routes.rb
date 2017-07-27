@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   delete '/users/likes/:id' => 'likes#delete'
   
   delete '/sessions/:id' => 'sessions#destroy', as: 'destroy_sessions'
+  
+  delete '/recipes/:id' => 'recipes#destroy', as: 'destroy_recipe'
   resources :users
   resources :sessions
   

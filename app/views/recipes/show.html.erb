@@ -7,6 +7,7 @@
             <div class= 'col-md-8'>
                 <h2><%= @recipe.name %></h2>
                 <h3><%= @recipe.description %></h3>
+                <%= button_to"Delete Recipe", {action: "destroy" , id:@recipe.id}, method: :delete, data: {confirm: "Are you sure?"} %>
             </div>
         </div>
     </div>
@@ -38,9 +39,9 @@
         <div id='ingredients'>
             <h2>Restaurants that Specialize</h2>
             <% @recipe.restaurants.each do |restaurant| %>
-                <h3><%= restaurant.name %></h3>
-                <p><%= restaurant.city %></p>
-                <p></p><%= restaurant.state %></p>        
+                <h3>Name: <%= restaurant.name %></h3>
+                <p>City: <%= restaurant.city %></p>
+                <p>State: <%= restaurant.state %></p>        
             <% end %>
         </div>
         </div>
